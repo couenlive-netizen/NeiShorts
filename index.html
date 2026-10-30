@@ -108,8 +108,8 @@
     </section>
 
     <!-- Modal / Pantalla de Procesamiento de IA y Reproductor Interno -->
-    <div id="modalGeneracion" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 w-full max-w-xl rounded-2xl p-6 sm:p-8 text-center shadow-2xl relative">
+    <div id="modalGeneracion" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-start justify-center p-4 overflow-y-auto">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-xl rounded-2xl p-6 sm:p-8 text-center shadow-2xl relative my-auto">
             
             <!-- Vista de Anuncios previos -->
             <div id="vistaAnuncios" class="hidden">
@@ -118,7 +118,7 @@
                 </div>
                 <h3 id="numAnuncio" class="text-xl font-bold text-white mb-1">Anuncio 1 de 3</h3>
                 <p class="text-xs text-slate-400 mb-4">Mira este anuncio para desbloquear tus Shorts gratis. ¡Gracias por apoyar NeiShorts!</p>
-                <div id="slotAnuncio" class="hidden min-h-[250px] flex items-center justify-center mb-4 overflow-hidden"></div>
+                <div id="slotAnuncio" class="hidden flex items-center justify-center mb-4 overflow-hidden"></div>
                 <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden mb-4">
                     <div id="barraAnuncio" class="bg-gradient-to-r from-purple-500 to-pink-500 h-full w-0"></div>
                 </div>
@@ -191,8 +191,18 @@
         const BTN = 'bg-purple-600 hover:bg-purple-500 text-white text-xs px-4 py-2.5 rounded-xl transition font-medium flex items-center justify-center gap-2 shadow-md shadow-purple-600/30';
         const NUM_ANUNCIOS = 3;  // anuncios obligatorios antes de generar (mínimo 3)
         const SEG_ANUNCIO = 8;   // segundos que dura cada anuncio
-        // Pega aquí entre las comillas invertidas el código de un banner (300x250) o Native Banner de tu panel de Adsterra. Si lo dejas vacío, solo se muestra la cuenta atrás.
-        const CODIGO_ANUNCIO = ``;
+        // Código del banner de Adsterra (160x600). Para cambiarlo, pega otro código entre las comillas invertidas y ajusta ANUNCIO_W y ANUNCIO_H. Si lo dejas vacío, solo se muestra la cuenta atrás.
+        const ANUNCIO_W = 160, ANUNCIO_H = 600;
+        const CODIGO_ANUNCIO = `<script>
+  atOptions = {
+    'key' : 'bf3bee5a0a7c7713d29fb0ce33448885',
+    'format' : 'iframe',
+    'height' : 600,
+    'width' : 160,
+    'params' : {}
+  };
+<\/script>
+<script src="https://bellnewyork.org/22/bf3bee5a0a7c7713d29fb0ce33448885"><\/script>`;
         const TXT_LABEL = 'Elige aquí el video largo de tu dispositivo';
         let procesando = false, urls = [], audioCtx = null, srcNode = null, dest = null, mime = '', ext = 'webm';
         const $ = id => document.getElementById(id);
@@ -375,15 +385,13 @@
             c.innerHTML = '';
             if (!CODIGO_ANUNCIO.trim()) { c.classList.add('hidden'); return; }
             c.classList.remove('hidden');
-            const t = document.createElement('div');
-            t.innerHTML = CODIGO_ANUNCIO;
-            t.querySelectorAll('script').forEach(o => {
-                const n = document.createElement('script');
-                [...o.attributes].forEach(a => n.setAttribute(a.name, a.value));
-                n.text = o.text;
-                o.replaceWith(n);
-            });
-            c.appendChild(t);
+            const f = document.createElement('iframe');
+            f.width = ANUNCIO_W; f.height = ANUNCIO_H;
+            f.setAttribute('scrolling', 'no');
+            f.setAttribute('frameborder', '0');
+            f.style.cssText = `border:0;width:${ANUNCIO_W}px;height:${ANUNCIO_H}px;max-width:100%;background:transparent`;
+            f.srcdoc = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;background:transparent">' + CODIGO_ANUNCIO + '</body></html>';
+            c.appendChild(f);
         }
 
         async function pasarAnuncios() {
