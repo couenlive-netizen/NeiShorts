@@ -6,23 +6,6 @@
     <title>NeiShorts - Convierte videos largos en Shorts virales gratis</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#fdf4ff',
-                            500: '#a855f7',
-                            600: '#9333ea',
-                            700: '#7e22ce',
-                            900: '#581c87',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
     <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -56,4 +39,20 @@
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold mb-6">
                 <i class="fa-solid fa-gift"></i> 100% Gratis con Anuncios • Sin Tarjeta de Crédito • Sin Suscripciones
             </div>
-            <h1 class="text-4xl sm
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white mb-6 leading-tight">
+                Convierte videos largos en <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-amber-300 bg-clip-text text-transparent">Shorts virales</span> al instante
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+                Pega el enlace de cualquier video de YouTube. Nuestra IA selecciona los mejores momentos y les añade subtítulos dinámicos de forma totalmente gratuita a cambio de ver unos breves anuncios.
+            </p>
+            
+            <!-- Caja de Generación Rápida -->
+            <div id="demo" class="bg-slate-900 border border-slate-800 p-4 sm:p-6 rounded-2xl max-w-3xl mx-auto shadow-2xl">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <div class="relative flex-1">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-500">
+                            <i class="fa-brands fa-youtube text-lg"></i>
+                        </span>
+                        <input type="text" id="videoUrl" placeholder="Pega aquí el enlace de YouTube (ej. https://youtu.be/...)" class="w-full bg-slate-950 border border-slate-800 rounded-xl pl-11 pr-4 py-3.5 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-purple-500 transition">
+                    </div>
+                    <button type="button" onclick="iniciarProcesoGeneracion()" class="bg-gradient-to-r from-purple-600 to-pink-
