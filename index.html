@@ -85,7 +85,7 @@
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
                     <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center font-bold text-lg mb-4">2</div>
                     <h3 class="text-lg font-bold text-white mb-2">Mira breves anuncios</h3>
-                    <p class="text-sm text-slate-400">Visualiza entre 3 y 5 anuncios rápidos elegidos de forma aleatoria para financiar el coste de la IA.</p>
+                    <p class="text-sm text-slate-400">Visualiza 3 anuncios rápidos para desbloquear la creación de tus Shorts y financiar el coste de la IA.</p>
                 </div>
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
                     <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center font-bold text-lg mb-4">3</div>
@@ -111,6 +111,20 @@
     <div id="modalGeneracion" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-xl rounded-2xl p-6 sm:p-8 text-center shadow-2xl relative">
             
+            <!-- Vista de Anuncios previos -->
+            <div id="vistaAnuncios" class="hidden">
+                <div class="inline-block p-3 bg-purple-500/10 rounded-full text-purple-400 mb-3">
+                    <i class="fa-solid fa-gift text-2xl"></i>
+                </div>
+                <h3 id="numAnuncio" class="text-xl font-bold text-white mb-1">Anuncio 1 de 3</h3>
+                <p class="text-xs text-slate-400 mb-4">Mira este anuncio para desbloquear tus Shorts gratis. ¡Gracias por apoyar NeiShorts!</p>
+                <div id="slotAnuncio" class="hidden min-h-[250px] flex items-center justify-center mb-4 overflow-hidden"></div>
+                <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden mb-4">
+                    <div id="barraAnuncio" class="bg-gradient-to-r from-purple-500 to-pink-500 h-full w-0"></div>
+                </div>
+                <button type="button" id="btnSiguienteAnuncio" disabled class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-3 rounded-xl text-sm transition opacity-50 cursor-not-allowed">Espera...</button>
+            </div>
+
             <!-- Vista de Procesamiento de IA -->
             <div id="vistaIA">
                 <div class="inline-block p-3 bg-purple-500/10 rounded-full text-purple-400 mb-4 animate-spin">
@@ -175,6 +189,10 @@
         const MODELO_LIB = 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3';
         const MIMES = ['video/mp4;codecs=avc1.42E01E,mp4a.40.2', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm'];
         const BTN = 'bg-purple-600 hover:bg-purple-500 text-white text-xs px-4 py-2.5 rounded-xl transition font-medium flex items-center justify-center gap-2 shadow-md shadow-purple-600/30';
+        const NUM_ANUNCIOS = 3;  // anuncios obligatorios antes de generar (mínimo 3)
+        const SEG_ANUNCIO = 8;   // segundos que dura cada anuncio
+        // Pega aquí entre las comillas invertidas el código de un banner (300x250) o Native Banner de tu panel de Adsterra. Si lo dejas vacío, solo se muestra la cuenta atrás.
+        const CODIGO_ANUNCIO = ``;
         const TXT_LABEL = 'Elige aquí el video largo de tu dispositivo';
         let procesando = false, urls = [], audioCtx = null, srcNode = null, dest = null, mime = '', ext = 'webm';
         const $ = id => document.getElementById(id);
@@ -353,6 +371,46 @@
             $('vistaResultado').classList.remove('hidden');
         }
 
+        function cargarAnuncio(c) {
+            c.innerHTML = '';
+            if (!CODIGO_ANUNCIO.trim()) { c.classList.add('hidden'); return; }
+            c.classList.remove('hidden');
+            const t = document.createElement('div');
+            t.innerHTML = CODIGO_ANUNCIO;
+            t.querySelectorAll('script').forEach(o => {
+                const n = document.createElement('script');
+                [...o.attributes].forEach(a => n.setAttribute(a.name, a.value));
+                n.text = o.text;
+                o.replaceWith(n);
+            });
+            c.appendChild(t);
+        }
+
+        async function pasarAnuncios() {
+            const total = NUM_ANUNCIOS, btn = $('btnSiguienteAnuncio'), slot = $('slotAnuncio'), barra = $('barraAnuncio');
+            for (let i = 1; i <= total; i++) {
+                $('numAnuncio').textContent = `Anuncio ${i} de ${total}`;
+                cargarAnuncio(slot);
+                btn.disabled = true;
+                btn.classList.add('opacity-50', 'cursor-not-allowed');
+                barra.style.transition = 'none'; barra.style.width = '0%';
+                await new Promise(res => {
+                    let s = SEG_ANUNCIO;
+                    btn.textContent = `Espera ${s}s...`;
+                    setTimeout(() => { barra.style.transition = `width ${SEG_ANUNCIO}s linear`; barra.style.width = '100%'; }, 50);
+                    const iv = setInterval(() => {
+                        s--;
+                        if (s <= 0) { clearInterval(iv); res(); } else btn.textContent = `Espera ${s}s...`;
+                    }, 1000);
+                });
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                btn.textContent = i < total ? 'Siguiente anuncio' : 'Generar mis Shorts';
+                await new Promise(res => { btn.onclick = () => res(); });
+            }
+            slot.innerHTML = '';
+        }
+
         async function iniciarProcesoGeneracion() {
             if (procesando) return;
             const f = $('videoFile').files[0];
@@ -368,11 +426,15 @@
             const modal = $('modalGeneracion');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            $('vistaIA').classList.remove('hidden');
+            $('vistaIA').classList.add('hidden');
             $('vistaResultado').classList.add('hidden');
-            progreso(0, 'Iniciando motor de IA...');
+            $('vistaAnuncios').classList.remove('hidden');
             try {
                 await audioCtx.resume();
+                await pasarAnuncios();
+                $('vistaAnuncios').classList.add('hidden');
+                $('vistaIA').classList.remove('hidden');
+                progreso(0, 'Iniciando motor de IA...');
                 const v = $('videoFuente'), u = URL.createObjectURL(f);
                 urls.push(u);
                 v.src = u;
@@ -411,6 +473,7 @@
             const modal = $('modalGeneracion');
             modal.classList.remove('flex');
             modal.classList.add('hidden');
+            $('vistaAnuncios').classList.add('hidden');
             $('videoFile').value = '';
             $('videoLabel').textContent = TXT_LABEL;
             const pv = $('videoFrame'), v = $('videoFuente');
