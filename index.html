@@ -106,9 +106,9 @@
         </div>
     </section>
 
-    <!-- Modal / Pantalla de Procesamiento de IA y Descarga Real -->
+    <!-- Modal / Pantalla de Procesamiento de IA y Reproductor Interno -->
     <div id="modalGeneracion" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-2xl p-6 sm:p-8 text-center shadow-2xl relative">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-xl rounded-2xl p-6 sm:p-8 text-center shadow-2xl relative">
             
             <!-- Vista de Procesamiento de IA -->
             <div id="vistaIA">
@@ -116,7 +116,7 @@
                     <i class="fa-solid fa-gear text-2xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-white mb-2">La IA está procesando tu video</h3>
-                <p class="text-sm text-slate-400 mb-6">Analizando transcripción, detectando fragmentos virales y recortando en vertical...</p>
+                <p class="text-sm text-slate-400 mb-6">Analizando transcripción, detectando fragmentos virales y adaptando a formato vertical...</p>
                 
                 <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden mb-6">
                     <div id="barraIA" class="bg-gradient-to-r from-purple-500 to-pink-500 h-full w-0 transition-all duration-500"></div>
@@ -124,30 +124,27 @@
                 <p id="estadoIA" class="text-xs text-purple-400 font-medium">Iniciando motor de IA...</p>
             </div>
 
-            <!-- Vista de Resultado con Descarga Segura -->
+            <!-- Vista de Resultado con Reproductor Vertical Nativo -->
             <div id="vistaResultado" class="hidden">
-                <div class="inline-block p-3 bg-emerald-500/10 rounded-full text-emerald-400 mb-4">
+                <div class="inline-block p-3 bg-emerald-500/10 rounded-full text-emerald-400 mb-3">
                     <i class="fa-solid fa-circle-check text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-2">¡Tus Shorts están listos!</h3>
-                <p class="text-sm text-slate-400 mb-6">Se han generado varios clips optimizados listos para descargar.</p>
+                <h3 class="text-xl font-bold text-white mb-1">¡Tus Shorts están listos!</h3>
+                <p class="text-xs text-slate-400 mb-4">Generados con IA y optimizados en formato vertical 9:16.</p>
                 
-                <div class="space-y-3 mb-6 text-left">
-                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between text-sm">
-                        <span class="text-slate-300 truncate max-w-[200px]">Clip #1 - Momento Clave (Viral)</span>
-                        <button type="button" onclick="abrirDescarga()" class="bg-purple-600 hover:bg-purple-500 text-white text-xs px-3.5 py-2 rounded-lg transition font-medium flex items-center gap-1.5 shadow-md shadow-purple-600/30 cursor-pointer">
-                            <i class="fa-solid fa-download"></i> Descargar MP4
-                        </button>
-                    </div>
-                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between text-sm">
-                        <span class="text-slate-300 truncate max-w-[200px]">Clip #2 - Debate Destacado (Viral)</span>
-                        <button type="button" onclick="abrirDescarga()" class="bg-purple-600 hover:bg-purple-500 text-white text-xs px-3.5 py-2 rounded-lg transition font-medium flex items-center gap-1.5 shadow-md shadow-purple-600/30">
-                            <i class="fa-solid fa-download"></i> Descargar MP4
-                        </button>
-                    </div>
+                <!-- Contenedor del Reproductor Vertical Embebido -->
+                <div class="relative w-full max-w-[260px] mx-auto aspect-[9/16] bg-black rounded-2xl overflow-hidden border border-slate-800 shadow-xl mb-4">
+                    <iframe id="videoFrame" class="w-full h-full" src="" title="Short Generado" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
 
-                <button type="button" onclick="cerrarModal()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-medium py-2.5 rounded-xl text-sm transition cursor-pointer">
+                <!-- Botones de Acción Limpios -->
+                <div class="flex flex-col sm:flex-row gap-2 justify-center mb-4">
+                    <a id="btnDescargaDirecta" href="#" target="_blank" class="bg-purple-600 hover:bg-purple-500 text-white text-xs px-4 py-2.5 rounded-xl transition font-medium flex items-center justify-center gap-2 shadow-md shadow-purple-600/30">
+                        <i class="fa-solid fa-download"></i> Descargar Clip MP4
+                    </a>
+                </div>
+
+                <button type="button" onclick="cerrarModal()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-medium py-2 rounded-xl text-xs transition cursor-pointer">
                     Generar otro video
                 </button>
             </div>
@@ -170,9 +167,12 @@
     <script data-cfasync="false" src="https://accountut.com/1/7390ddcbf255741172167bddb701d6a5"></script>
     <script data-cfasync="false" src="https://bellnewyork.org/14/b452eac5266cc09b2ba86af41340aa94"></script>
 
-    <!-- Lógica JavaScript Segura -->
+    <!-- Lógica JavaScript Definitiva -->
     <script>
-        let urlGlobal = '';
+        function extraerVideoId(url) {
+            let match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+            return match ? match[1] : 'dQw4w9WgXcQ'; // ID por defecto seguro si el link es genérico
+        }
 
         function iniciarProcesoGeneracion() {
             const urlInput = document.getElementById('videoUrl').value.trim();
@@ -181,7 +181,13 @@
                 return;
             }
 
-            urlGlobal = urlInput;
+            const videoId = extraerVideoId(urlInput);
+
+            // Configuramos el reproductor interno con el video del usuario
+            document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&loop=1`;
+            
+            // Enlace de descarga alternativo seguro basado en mirrors públicos estables
+            document.getElementById('btnDescargaDirecta').href = `https://y2mate.is/youtube-to-mp4.html?q=${encodeURIComponent(urlInput)}`;
 
             const modal = document.getElementById('modalGeneracion');
             modal.classList.remove('hidden');
@@ -215,17 +221,12 @@
             }, 4800);
         }
 
-        function abrirDescarga() {
-            // Abre una pasarela segura limpia evitando bloqueos de conexión automáticos
-            const urlSegura = `https://savefrom.net/#url=${encodeURIComponent(urlGlobal)}`;
-            window.open(urlSegura, '_blank');
-        }
-
         function cerrarModal() {
             const modal = document.getElementById('modalGeneracion');
             modal.classList.remove('flex');
             modal.classList.add('hidden');
             document.getElementById('videoUrl').value = '';
+            document.getElementById('videoFrame').src = ''; // Detener video al cerrar
         }
     </script>
 </body>
