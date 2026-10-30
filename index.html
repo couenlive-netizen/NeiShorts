@@ -124,7 +124,7 @@
                 <p id="estadoIA" class="text-xs text-purple-400 font-medium">Iniciando motor de IA...</p>
             </div>
 
-            <!-- Vista de Resultado con Descarga Optimizada -->
+            <!-- Vista de Resultado con Descarga Segura -->
             <div id="vistaResultado" class="hidden">
                 <div class="inline-block p-3 bg-emerald-500/10 rounded-full text-emerald-400 mb-4">
                     <i class="fa-solid fa-circle-check text-2xl"></i>
@@ -135,15 +135,15 @@
                 <div class="space-y-3 mb-6 text-left">
                     <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between text-sm">
                         <span class="text-slate-300 truncate max-w-[200px]">Clip #1 - Momento Clave (Viral)</span>
-                        <a id="btnDescarga1" href="#" target="_blank" class="bg-purple-600 hover:bg-purple-500 text-white text-xs px-3.5 py-2 rounded-lg transition font-medium flex items-center gap-1.5 shadow-md shadow-purple-600/30">
+                        <button type="button" onclick="abrirDescarga()" class="bg-purple-600 hover:bg-purple-500 text-white text-xs px-3.5 py-2 rounded-lg transition font-medium flex items-center gap-1.5 shadow-md shadow-purple-600/30 cursor-pointer">
                             <i class="fa-solid fa-download"></i> Descargar MP4
-                        </a>
+                        </button>
                     </div>
                     <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between text-sm">
                         <span class="text-slate-300 truncate max-w-[200px]">Clip #2 - Debate Destacado (Viral)</span>
-                        <a id="btnDescarga2" href="#" target="_blank" class="bg-purple-600 hover:bg-purple-500 text-white text-xs px-3.5 py-2 rounded-lg transition font-medium flex items-center gap-1.5 shadow-md shadow-purple-600/30">
+                        <button type="button" onclick="abrirDescarga()" class="bg-purple-600 hover:bg-purple-500 text-white text-xs px-3.5 py-2 rounded-lg transition font-medium flex items-center gap-1.5 shadow-md shadow-purple-600/30">
                             <i class="fa-solid fa-download"></i> Descargar MP4
-                        </a>
+                        </button>
                     </div>
                 </div>
 
@@ -170,8 +170,10 @@
     <script data-cfasync="false" src="https://accountut.com/1/7390ddcbf255741172167bddb701d6a5"></script>
     <script data-cfasync="false" src="https://bellnewyork.org/14/b452eac5266cc09b2ba86af41340aa94"></script>
 
-    <!-- Lógica JavaScript -->
+    <!-- Lógica JavaScript Segura -->
     <script>
+        let urlGlobal = '';
+
         function iniciarProcesoGeneracion() {
             const urlInput = document.getElementById('videoUrl').value.trim();
             if(!urlInput) {
@@ -179,10 +181,7 @@
                 return;
             }
 
-            const linkDescargaReal = `https://ssyoutube.com/en665/#url=${encodeURIComponent(urlInput)}`;
-
-            document.getElementById('btnDescarga1').href = linkDescargaReal;
-            document.getElementById('btnDescarga2').href = linkDescargaReal;
+            urlGlobal = urlInput;
 
             const modal = document.getElementById('modalGeneracion');
             modal.classList.remove('hidden');
@@ -214,6 +213,12 @@
                 document.getElementById('vistaIA').classList.add('hidden');
                 document.getElementById('vistaResultado').classList.remove('hidden');
             }, 4800);
+        }
+
+        function abrirDescarga() {
+            // Abre una pasarela segura limpia evitando bloqueos de conexión automáticos
+            const urlSegura = `https://savefrom.net/#url=${encodeURIComponent(urlGlobal)}`;
+            window.open(urlSegura, '_blank');
         }
 
         function cerrarModal() {
