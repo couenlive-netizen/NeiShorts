@@ -1,1009 +1,525 @@
 <!DOCTYPE html>
-
 <html lang="es" class="scroll-smooth">
-
 <head>
-
-    <!-- Google tag (gtag.js) -->
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QSD94B9FVH"></script>
-
-<script>
-
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag(){dataLayer.push(arguments);}
-
-  gtag('js', new Date());
-
-
-
-  gtag('config', 'G-QSD94B9FVH');
-
-</script>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>NeiShorts - Convierte videos largos en Shorts virales gratis</title>
-
+    <!-- SEO: cambia TU-SITIO.onrender.com por la dirección real de tu web -->
+    <meta name="description" content="Convierte videos largos en Shorts verticales con subtítulos dinámicos, gratis y sin registro. Sube tu video, la IA elige los mejores momentos y lo procesa en tu navegador.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://TU-SITIO.onrender.com/">
+    <meta name="theme-color" content="#020617">
+    <meta name="author" content="NeiShorts">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%237c3aed'/%3E%3Ctext x='50' y='72' font-size='64' text-anchor='middle'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="NeiShorts">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:title" content="NeiShorts - Convierte videos largos en Shorts virales gratis">
+    <meta property="og:description" content="Sube tu video y obtén Shorts verticales con subtítulos dinámicos, gratis y sin registro.">
+    <meta property="og:url" content="https://TU-SITIO.onrender.com/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="NeiShorts - Convierte videos largos en Shorts virales gratis">
+    <meta name="twitter:description" content="Sube tu video y obtén Shorts verticales con subtítulos dinámicos, gratis y sin registro.">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "NeiShorts",
+      "url": "https://TU-SITIO.onrender.com/",
+      "description": "Herramienta gratuita para convertir videos largos en Shorts verticales con subtítulos dinámicos.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "es",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+    }
+    </script>
     <!-- Tailwind CSS CDN -->
-
     <script src="https://cdn.tailwindcss.com"></script>
-
     <!-- FontAwesome para iconos -->
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 </head>
-
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-purple-500 selection:text-white">
 
-
-
     <!-- Navbar -->
-
     <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-
             <div class="flex items-center space-x-2">
-
                 <div class="bg-gradient-to-tr from-purple-600 to-pink-500 p-2 rounded-xl text-white font-bold flex items-center justify-center shadow-lg shadow-purple-500/30">
-
                     <i class="fa-solid fa-bolt text-lg"></i>
-
                 </div>
-
                 <span class="text-xl font-black tracking-tight text-white">Nei<span class="text-purple-500">Shorts</span></span>
-
             </div>
-
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
-
                 <a href="#como-funciona" class="hover:text-white transition">Cómo funciona</a>
-
                 <a href="#demo" class="hover:text-white transition">Generador</a>
-
             </nav>
-
             <div>
-
                 <a href="#demo" class="bg-purple-600 hover:bg-purple-500 text-white font-semibold px-4 py-2 rounded-xl text-sm transition shadow-lg shadow-purple-600/20">
-
                     Crear Shorts Gratis
-
                 </a>
-
             </div>
-
         </div>
-
     </header>
 
-
-
     <!-- Hero Section -->
-
     <section class="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden">
-
         <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-600/20 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
-
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold mb-6">
-
                 <i class="fa-solid fa-gift"></i> 100% Gratis con Anuncios • Sin Tarjeta de Crédito • Sin Suscripciones
-
             </div>
-
             <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white mb-6 leading-tight">
-
                 Convierte videos largos en <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-amber-300 bg-clip-text text-transparent">Shorts virales</span> al instante
-
             </h1>
-
             <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-
                 Sube cualquier video largo desde tu dispositivo. Nuestra IA selecciona los mejores momentos y les añade subtítulos dinámicos de forma totalmente gratuita a cambio de ver unos breves anuncios.
-
             </p>
-
             
-
             <!-- Caja de Generación Rápida -->
-
             <div id="demo" class="bg-slate-900 border border-slate-800 p-4 sm:p-6 rounded-2xl max-w-3xl mx-auto shadow-2xl">
-
                 <div class="flex flex-col sm:flex-row gap-3">
-
                     <div class="relative flex-1">
-
                         <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-500 pointer-events-none">
-
                             <i class="fa-solid fa-file-video text-lg"></i>
-
                         </span>
-
                         <label for="videoFile" id="videoLabel" class="block truncate text-left w-full bg-slate-950 border border-slate-800 rounded-xl pl-11 pr-4 py-3.5 text-sm text-slate-500 hover:border-purple-500 transition cursor-pointer">Elige aquí el video largo de tu dispositivo</label>
-
                         <input type="file" id="videoFile" accept="video/*" class="hidden">
-
                     </div>
-
                     <button type="button" onclick="iniciarProcesoGeneracion()" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold px-6 py-3.5 rounded-xl text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-purple-600/30 cursor-pointer">
-
                         <i class="fa-solid fa-wand-magic-sparkles"></i> Generar Shorts
-
                     </button>
-
                 </div>
-
                 <div class="flex items-center justify-center gap-4 mt-4 text-xs text-slate-400 pt-3 border-t border-slate-800/60">
-
                     <span class="flex items-center gap-1"><i class="fa-solid fa-check text-purple-400"></i> Subtítulos dinámicos</span>
-
                     <span class="flex items-center gap-1"><i class="fa-solid fa-check text-purple-400"></i> Detección viral por IA</span>
-
                     <span class="flex items-center gap-1"><i class="fa-solid fa-check text-purple-400"></i> 0€ / Mes</span>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
-
-
 
     <!-- Features / Cómo Funciona -->
-
     <section id="como-funciona" class="py-20 bg-slate-900/50 border-t border-slate-900">
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
             <div class="text-center max-w-3xl mx-auto mb-16">
-
                 <h2 class="text-3xl font-black text-white mb-4">¿Cómo funciona NeiShorts?</h2>
-
                 <p class="text-slate-400">Una plataforma inteligente diseñada para ofrecerte resultados profesionales sin pagar suscripciones.</p>
-
             </div>
-
             <div class="grid md:grid-cols-3 gap-8 mb-16">
-
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
-
                     <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center font-bold text-lg mb-4">1</div>
-
                     <h3 class="text-lg font-bold text-white mb-2">Sube tu video</h3>
-
                     <p class="text-sm text-slate-400">Elige cualquier video largo de tu dispositivo directamente en la caja de arriba.</p>
-
                 </div>
-
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
-
                     <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center font-bold text-lg mb-4">2</div>
-
                     <h3 class="text-lg font-bold text-white mb-2">Mira breves anuncios</h3>
-
                     <p class="text-sm text-slate-400">Visualiza 3 anuncios rápidos para desbloquear la creación de tus Shorts y financiar el coste de la IA.</p>
-
                 </div>
-
                 <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
-
                     <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center font-bold text-lg mb-4">3</div>
-
                     <h3 class="text-lg font-bold text-white mb-2">Descarga tus clips</h3>
-
                     <p class="text-sm text-slate-400">Obtén tus videos en formato vertical con subtítulos dinámicos listos para triunfar.</p>
-
                 </div>
-
             </div>
-
-
 
             <!-- Explicación de por qué es gratis -->
-
             <div class="bg-gradient-to-r from-purple-900/40 to-pink-900/40 border border-purple-500/30 rounded-2xl p-6 sm:p-8 max-w-3xl mx-auto text-center">
-
                 <div class="inline-block p-3 bg-purple-500/20 rounded-full text-purple-300 mb-3">
-
                     <i class="fa-solid fa-circle-question text-xl"></i>
-
                 </div>
-
                 <h3 class="text-xl font-bold text-white mb-2">¿Cómo es posible que sea totalmente gratis?</h3>
-
                 <p class="text-sm text-slate-300 leading-relaxed">
-
                     Creemos que las herramientas de IA no deberían costar una fortuna al mes. En lugar de cobrarte una suscripción, NeiShorts se financia mediante breves espacios publicitarios antes de procesar tus videos. Así, tú disfrutas del servicio sin pagar nada y nosotros podemos mantener los servidores activos.
-
                 </p>
-
             </div>
-
         </div>
-
     </section>
 
-
-
     <!-- Modal / Pantalla de Procesamiento de IA y Reproductor Interno -->
-
     <div id="modalGeneracion" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-start justify-center p-4 overflow-y-auto">
-
         <div class="bg-slate-900 border border-slate-800 w-full max-w-xl rounded-2xl p-6 sm:p-8 text-center shadow-2xl relative my-auto">
-
             
-
             <!-- Vista de Anuncios previos -->
-
             <div id="vistaAnuncios" class="hidden">
-
                 <div class="inline-block p-3 bg-purple-500/10 rounded-full text-purple-400 mb-3">
-
                     <i class="fa-solid fa-gift text-2xl"></i>
-
                 </div>
-
                 <h3 id="numAnuncio" class="text-xl font-bold text-white mb-1">Anuncio 1 de 3</h3>
-
                 <p class="text-xs text-slate-400 mb-4">Mira este anuncio para desbloquear tus Shorts gratis. ¡Gracias por apoyar NeiShorts!</p>
-
                 <div id="slotAnuncio" class="hidden flex items-center justify-center mb-4 overflow-hidden"></div>
-
                 <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden mb-4">
-
                     <div id="barraAnuncio" class="bg-gradient-to-r from-purple-500 to-pink-500 h-full w-0"></div>
-
                 </div>
-
                 <button type="button" id="btnSiguienteAnuncio" disabled class="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-3 rounded-xl text-sm transition opacity-50 cursor-not-allowed">Espera...</button>
-
             </div>
-
-
 
             <!-- Vista de Procesamiento de IA -->
-
             <div id="vistaIA">
-
                 <div class="inline-block p-3 bg-purple-500/10 rounded-full text-purple-400 mb-4 animate-spin">
-
                     <i class="fa-solid fa-gear text-2xl"></i>
-
                 </div>
-
                 <h3 class="text-xl font-bold text-white mb-2">La IA está procesando tu video</h3>
-
                 <p class="text-sm text-slate-400 mb-6">Analizando transcripción, detectando fragmentos virales y adaptando a formato vertical... Mantén esta pestaña abierta y visible.</p>
-
                 
-
                 <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden mb-6">
-
                     <div id="barraIA" class="bg-gradient-to-r from-purple-500 to-pink-500 h-full w-0 transition-all duration-500"></div>
-
                 </div>
-
                 <p id="estadoIA" class="text-xs text-purple-400 font-medium">Iniciando motor de IA...</p>
-
             </div>
-
-
 
             <!-- Vista de Resultado con Reproductor Vertical Nativo -->
-
             <div id="vistaResultado" class="hidden">
-
                 <div class="inline-block p-3 bg-emerald-500/10 rounded-full text-emerald-400 mb-3">
-
                     <i class="fa-solid fa-circle-check text-2xl"></i>
-
                 </div>
-
                 <h3 class="text-xl font-bold text-white mb-1">¡Tus Shorts están listos!</h3>
-
                 <p class="text-xs text-slate-400 mb-4">Generados con IA y optimizados en formato vertical 9:16.</p>
-
                 
-
                 <!-- Contenedor del Reproductor Vertical -->
-
                 <div class="relative w-full max-w-[260px] mx-auto aspect-[9/16] bg-black rounded-2xl overflow-hidden border border-slate-800 shadow-xl mb-4">
-
                     <video id="videoFrame" class="w-full h-full object-cover" controls playsinline loop></video>
-
                 </div>
-
-
 
                 <!-- Botones de Acción Limpios -->
-
                 <div id="zonaDescargas" class="flex flex-col sm:flex-row gap-2 justify-center mb-4"></div>
 
-
-
                 <button type="button" onclick="cerrarModal()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-medium py-2 rounded-xl text-xs transition cursor-pointer">
-
                     Generar otro video
-
                 </button>
-
             </div>
 
-
-
         </div>
-
     </div>
 
-
-
     <!-- Vídeo de trabajo (oculto) -->
-
     <video id="videoFuente" playsinline preload="auto" style="position:fixed;left:-9999px;top:0;width:2px;height:2px;opacity:0;pointer-events:none"></video>
 
-
-
     <!-- Footer con Páginas Legales -->
-
     <footer class="bg-slate-950 border-t border-slate-900 py-12 text-center text-sm text-slate-500">
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
             <div class="flex flex-wrap justify-center gap-6 mb-6 text-slate-400">
-
                 <a href="#" onclick="alert('NeiShorts respeta tu privacidad. No almacenamos datos personales de los usuarios.'); return false;" class="hover:text-white transition">Política de Privacidad</a>
-
                 <a href="#" onclick="alert('Términos de servicio: Uso gratuito sujeto a visualización de publicidad patrocinada.'); return false;" class="hover:text-white transition">Términos y Condiciones</a>
-
             </div>
-
             <p>&copy; 2026 NeiShorts. Todos los derechos reservados. 100% Gratuito.</p>
-
         </div>
-
     </footer>
 
-
-
     <!-- Scripts de Adsterra -->
-
     <script data-cfasync="false" src="https://accountut.com/1/7390ddcbf255741172167bddb701d6a5"></script>
-
     <script data-cfasync="false" src="https://bellnewyork.org/14/b452eac5266cc09b2ba86af41340aa94"></script>
 
-
-
     <!-- Lógica JavaScript: todo se procesa en el navegador del usuario (coste 0) -->
-
     <script>
-
         const IDIOMA = 'spanish';          // idioma del audio de los videos
-
         const MAX_MIN = 20, MAX_MB = 400;  // límites para no saturar el navegador
-
         const CLIP_S = 45, MAX_CLIPS = 3, TW = 720, TH = 1280;
-
         const MODELO_LIB = 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3';
-
         const MIMES = ['video/mp4;codecs=avc1.42E01E,mp4a.40.2', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm'];
-
         const BTN = 'bg-purple-600 hover:bg-purple-500 text-white text-xs px-4 py-2.5 rounded-xl transition font-medium flex items-center justify-center gap-2 shadow-md shadow-purple-600/30';
-
         const NUM_ANUNCIOS = 3;  // anuncios obligatorios antes de generar (mínimo 3)
-
         const SEG_ANUNCIO = 8;   // segundos que dura cada anuncio
-
         // Código del banner de Adsterra (160x600). Para cambiarlo, pega otro código entre las comillas invertidas y ajusta ANUNCIO_W y ANUNCIO_H. Si lo dejas vacío, solo se muestra la cuenta atrás.
-
         const ANUNCIO_W = 160, ANUNCIO_H = 600;
-
         const CODIGO_ANUNCIO = `<script>
-
   atOptions = {
-
     'key' : 'bf3bee5a0a7c7713d29fb0ce33448885',
-
     'format' : 'iframe',
-
     'height' : 600,
-
     'width' : 160,
-
     'params' : {}
-
   };
-
 <\/script>
-
 <script src="https://bellnewyork.org/22/bf3bee5a0a7c7713d29fb0ce33448885"><\/script>`;
-
         const TXT_LABEL = 'Elige aquí el video largo de tu dispositivo';
-
         let procesando = false, urls = [], audioCtx = null, srcNode = null, dest = null, mime = '', ext = 'webm';
-
         const $ = id => document.getElementById(id);
 
-
-
         $('videoFile').addEventListener('change', e => {
-
             const f = e.target.files[0];
-
             $('videoLabel').textContent = f ? f.name : TXT_LABEL;
-
         });
 
-
-
         function progreso(p, t) {
-
             $('barraIA').style.width = p + '%';
-
             if (t) $('estadoIA').innerText = t;
-
         }
-
-
 
         function esperar(el, ev) {
-
             return new Promise((res, rej) => {
-
                 const limpiar = () => { el.removeEventListener(ev, ok); el.removeEventListener('error', ko); };
-
                 const ok = () => { limpiar(); res(); };
-
                 const ko = () => { limpiar(); rej(new Error('No se pudo leer el video. Prueba con un archivo MP4.')); };
-
                 el.addEventListener(ev, ok);
-
                 el.addEventListener('error', ko);
-
             });
-
         }
-
-
 
         function buscar(v, t) {
-
             return new Promise(res => {
-
                 if (Math.abs(v.currentTime - t) < 0.05 && v.readyState >= 2) return res();
-
                 v.addEventListener('seeked', () => res(), { once: true });
-
                 v.currentTime = t;
-
             });
-
         }
-
-
 
         async function audio16k(file) {
-
             try {
-
                 const buf = await file.arrayBuffer();
-
                 const ab = await new OfflineAudioContext(1, 1, 16000).decodeAudioData(buf);
-
                 const n = ab.length, out = new Float32Array(n), ch = ab.numberOfChannels;
-
                 for (let c = 0; c < ch; c++) {
-
                     const d = ab.getChannelData(c);
-
                     for (let i = 0; i < n; i++) out[i] += d[i] / ch;
-
                 }
-
                 return out;
-
             } catch (e) {
-
                 throw new Error('No se pudo leer el audio de este video. Prueba con un archivo MP4.');
-
             }
-
         }
-
-
 
         async function transcribir(audio, dur) {
-
             const { pipeline, env } = await import(MODELO_LIB);
-
             env.allowLocalModels = false;
-
             if (env.backends && env.backends.onnx && env.backends.onnx.wasm) env.backends.onnx.wasm.proxy = true;
-
             const asr = await pipeline('automatic-speech-recognition', 'Xenova/whisper-base', {
-
                 progress_callback: p => {
-
                     if (p.status === 'progress' && p.progress != null)
-
                         progreso(10 + Math.round(p.progress * 0.3), 'Descargando modelo de IA (solo la primera vez)... ' + Math.round(p.progress) + '%');
-
                 }
-
             });
-
             let n = 0;
-
             const total = Math.max(1, Math.ceil(dur / 25));
-
             const opts = {
-
                 chunk_length_s: 30, stride_length_s: 5, task: 'transcribe', language: IDIOMA,
-
                 chunk_callback: () => { n++; progreso(40 + Math.round(30 * Math.min(1, n / total)), 'Transcribiendo audio y generando subtítulos...'); }
-
             };
-
             progreso(40, 'Transcribiendo audio y generando subtítulos...');
-
             let r;
-
             try { r = await asr(audio, { ...opts, return_timestamps: 'word' }); }
-
             catch (e) { r = await asr(audio, { ...opts, return_timestamps: true }); }
-
             return r.chunks || [];
-
         }
-
-
 
         function palabras(chunks) {
-
             const w = [];
-
             for (const c of chunks) {
-
                 const t = (c.text || '').trim();
-
                 if (!t || !c.timestamp || c.timestamp[0] == null) continue;
-
                 const s = c.timestamp[0], e = c.timestamp[1] == null ? s + 0.6 : c.timestamp[1];
-
                 const tk = t.split(/\s+/);
-
                 tk.forEach((x, i) => w.push({ t: x, s: s + (e - s) * i / tk.length, e: s + (e - s) * (i + 1) / tk.length }));
-
             }
-
             return w;
-
         }
-
-
 
         function elegirClips(w, dur) {
-
             if (dur <= CLIP_S * 1.3) return [[0, dur]];
-
             const L = CLIP_S, c = [];
-
             for (let s = 0; s + L <= dur + 0.01; s += 5) c.push({ s, n: w.filter(x => x.s >= s && x.s < s + L).length });
-
             c.sort((a, b) => b.n - a.n);
-
             const sel = [];
-
             for (const x of c) {
-
                 if (sel.length >= MAX_CLIPS) break;
-
                 if (x.n > 0 && sel.every(y => Math.abs(y[0] - x.s) >= L)) sel.push([x.s, x.s + L]);
-
             }
-
             if (!sel.length) sel.push([0, L]);
-
             return sel.sort((a, b) => a[0] - b[0]);
-
         }
-
-
 
         function grupos(w, s, e) {
-
             const ws = w.filter(x => x.s >= s && x.s < e), g = [];
-
             for (let i = 0; i < ws.length; i += 3) g.push(ws.slice(i, i + 3));
-
             return g;
-
         }
-
-
 
         function dibujar(cx, v, g, t) {
-
             const vw = v.videoWidth, vh = v.videoHeight;
-
             let sw, sh;
-
             if (vw / vh > TW / TH) { sh = vh; sw = vh * TW / TH; } else { sw = vw; sh = vw * TH / TW; }
-
             cx.drawImage(v, (vw - sw) / 2, (vh - sh) / 2, sw, sh, 0, 0, TW, TH);
-
             let grp = null;
-
             for (const a of g) if (t >= a[0].s && t < a[a.length - 1].e + 0.4) grp = a;
-
             if (!grp) return;
-
             const tx = grp.map(x => x.t.toUpperCase());
-
             let fs = 68;
-
             const medir = () => {
-
                 cx.font = `900 ${fs}px Arial, Helvetica, sans-serif`;
-
                 return tx.reduce((a, x) => a + cx.measureText(x).width, 0) + cx.measureText(' ').width * (tx.length - 1);
-
             };
-
             let tot = medir();
-
             while (tot > TW - 80 && fs > 24) { fs -= 4; tot = medir(); }
-
             const sp = cx.measureText(' ').width, y = TH * 0.72;
-
             let x = (TW - tot) / 2;
-
             cx.textAlign = 'left'; cx.textBaseline = 'middle'; cx.lineJoin = 'round';
-
             cx.lineWidth = Math.round(fs / 6); cx.strokeStyle = '#000';
-
             grp.forEach((wd, i) => {
-
                 cx.strokeText(tx[i], x, y);
-
                 cx.fillStyle = (t >= wd.s && t < wd.e) ? '#fde047' : '#ffffff';
-
                 cx.fillText(tx[i], x, y);
-
                 x += cx.measureText(tx[i]).width + sp;
-
             });
-
         }
-
-
 
         async function grabar(v, g, s, e, idx, tot) {
-
             await buscar(v, s);
-
             const cv = document.createElement('canvas');
-
             cv.width = TW; cv.height = TH;
-
             const cx = cv.getContext('2d');
-
             const stream = cv.captureStream(30);
-
             dest.stream.getAudioTracks().forEach(t => stream.addTrack(t));
-
             const rec = new MediaRecorder(stream, mime ? { mimeType: mime, videoBitsPerSecond: 4000000 } : { videoBitsPerSecond: 4000000 });
-
             const parts = [];
-
             rec.ondataavailable = ev => { if (ev.data && ev.data.size) parts.push(ev.data); };
-
             const fin = new Promise(r => { rec.onstop = r; });
-
             dibujar(cx, v, g, s);
-
             rec.start(500);
-
             await v.play();
-
             await new Promise(res => {
-
                 const seguridad = setTimeout(() => { clearInterval(iv); res(); }, (e - s + 20) * 1000);
-
                 const iv = setInterval(() => {
-
                     const t = v.currentTime;
-
                     dibujar(cx, v, g, t);
-
                     progreso(70 + Math.round(30 * (idx + Math.min(1, (t - s) / (e - s))) / tot), `Creando Short ${idx + 1} de ${tot}...`);
-
                     if (t >= e || v.ended) { clearInterval(iv); clearTimeout(seguridad); res(); }
-
                 }, 33);
-
             });
-
             v.pause();
-
             rec.stop();
-
             await fin;
-
             stream.getVideoTracks().forEach(t => t.stop());
-
             return new Blob(parts, { type: rec.mimeType || mime || 'video/webm' });
-
         }
-
-
 
         function mostrar(res) {
-
             const z = $('zonaDescargas'), pv = $('videoFrame');
-
             z.innerHTML = '';
-
             res.forEach((b, i) => {
-
                 const u = URL.createObjectURL(b);
-
                 urls.push(u);
-
                 const a = document.createElement('a');
-
                 a.href = u; a.download = `neishorts-${i + 1}.${ext}`; a.className = BTN;
-
                 a.innerHTML = `<i class="fa-solid fa-download"></i> Descargar Short ${i + 1} (${ext.toUpperCase()})`;
-
                 a.addEventListener('click', () => { pv.src = u; pv.play().catch(() => {}); });
-
                 z.appendChild(a);
-
                 if (i === 0) pv.src = u;
-
             });
-
             progreso(100, '¡Proceso completado con éxito!');
-
             $('vistaIA').classList.add('hidden');
-
             $('vistaResultado').classList.remove('hidden');
-
         }
-
-
 
         function cargarAnuncio(c) {
-
             c.innerHTML = '';
-
             if (!CODIGO_ANUNCIO.trim()) { c.classList.add('hidden'); return; }
-
             c.classList.remove('hidden');
-
             const f = document.createElement('iframe');
-
             f.width = ANUNCIO_W; f.height = ANUNCIO_H;
-
             f.setAttribute('scrolling', 'no');
-
             f.setAttribute('frameborder', '0');
-
             f.style.cssText = `border:0;width:${ANUNCIO_W}px;height:${ANUNCIO_H}px;max-width:100%;background:transparent`;
-
             f.srcdoc = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;background:transparent">' + CODIGO_ANUNCIO + '</body></html>';
-
             c.appendChild(f);
-
         }
-
-
 
         async function pasarAnuncios() {
-
             const total = NUM_ANUNCIOS, btn = $('btnSiguienteAnuncio'), slot = $('slotAnuncio'), barra = $('barraAnuncio');
-
             for (let i = 1; i <= total; i++) {
-
                 $('numAnuncio').textContent = `Anuncio ${i} de ${total}`;
-
                 cargarAnuncio(slot);
-
                 btn.disabled = true;
-
                 btn.classList.add('opacity-50', 'cursor-not-allowed');
-
                 barra.style.transition = 'none'; barra.style.width = '0%';
-
                 await new Promise(res => {
-
                     let s = SEG_ANUNCIO;
-
                     btn.textContent = `Espera ${s}s...`;
-
                     setTimeout(() => { barra.style.transition = `width ${SEG_ANUNCIO}s linear`; barra.style.width = '100%'; }, 50);
-
                     const iv = setInterval(() => {
-
                         s--;
-
                         if (s <= 0) { clearInterval(iv); res(); } else btn.textContent = `Espera ${s}s...`;
-
                     }, 1000);
-
                 });
-
                 btn.disabled = false;
-
                 btn.classList.remove('opacity-50', 'cursor-not-allowed');
-
                 btn.textContent = i < total ? 'Siguiente anuncio' : 'Generar mis Shorts';
-
                 await new Promise(res => { btn.onclick = () => res(); });
-
             }
-
             slot.innerHTML = '';
-
         }
-
-
 
         async function iniciarProcesoGeneracion() {
-
             if (procesando) return;
-
             const f = $('videoFile').files[0];
-
             if (!f || !f.type.startsWith('video/')) { alert('Por favor, elige un archivo de video de tu dispositivo.'); return; }
-
             if (f.size > MAX_MB * 1048576) { alert(`El video supera los ${MAX_MB} MB. Prueba con uno más pequeño.`); return; }
-
             if (!window.MediaRecorder || !HTMLCanvasElement.prototype.captureStream) {
-
                 alert('Tu navegador no es compatible. Usa Chrome, Edge o Firefox actualizado en un ordenador.'); return;
-
             }
-
             procesando = true;
-
             mime = MIMES.find(m => MediaRecorder.isTypeSupported(m)) || '';
-
             ext = mime.includes('mp4') ? 'mp4' : 'webm';
-
             audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
-
             const modal = $('modalGeneracion');
-
             modal.classList.remove('hidden');
-
             modal.classList.add('flex');
-
             $('vistaIA').classList.add('hidden');
-
             $('vistaResultado').classList.add('hidden');
-
             $('vistaAnuncios').classList.remove('hidden');
-
             try {
-
                 await audioCtx.resume();
-
                 await pasarAnuncios();
-
                 $('vistaAnuncios').classList.add('hidden');
-
                 $('vistaIA').classList.remove('hidden');
-
                 progreso(0, 'Iniciando motor de IA...');
-
                 const v = $('videoFuente'), u = URL.createObjectURL(f);
-
                 urls.push(u);
-
                 v.src = u;
-
                 progreso(3, 'Leyendo el video...');
-
                 await esperar(v, 'loadedmetadata');
-
                 const dur = v.duration;
-
                 if (!isFinite(dur) || dur < 5) throw new Error('El video no es válido o es demasiado corto.');
-
                 if (dur > MAX_MIN * 60) throw new Error(`El video dura más de ${MAX_MIN} minutos. Prueba con uno más corto.`);
-
                 if (!srcNode) {
-
                     srcNode = audioCtx.createMediaElementSource(v);
-
                     dest = audioCtx.createMediaStreamDestination();
-
                     srcNode.connect(dest);
-
                 }
-
                 progreso(6, 'Extrayendo audio...');
-
                 const audio = await audio16k(f);
-
                 progreso(10, 'Iniciando motor de IA...');
-
                 const w = palabras(await transcribir(audio, dur));
-
                 if (w.length < 3) throw new Error('No se ha detectado voz en el video.');
-
                 progreso(70, 'Detectando fragmentos de mayor viralidad...');
-
                 const clips = elegirClips(w, dur), res = [];
-
                 for (let i = 0; i < clips.length; i++) {
-
                     const [s, e] = clips[i];
-
                     res.push(await grabar(v, grupos(w, s, e), s, e, i, clips.length));
-
                 }
-
                 mostrar(res);
-
             } catch (err) {
-
                 console.error(err);
-
                 alert('Ha ocurrido un error: ' + (err && err.message ? err.message : err));
-
                 cerrarModal();
-
             } finally {
-
                 procesando = false;
-
             }
-
         }
-
-
 
         function cerrarModal() {
-
             const modal = $('modalGeneracion');
-
             modal.classList.remove('flex');
-
             modal.classList.add('hidden');
-
             $('vistaAnuncios').classList.add('hidden');
-
             $('videoFile').value = '';
-
             $('videoLabel').textContent = TXT_LABEL;
-
             const pv = $('videoFrame'), v = $('videoFuente');
-
             pv.pause(); pv.removeAttribute('src'); pv.load();
-
             v.pause(); v.removeAttribute('src'); v.load();
-
             $('zonaDescargas').innerHTML = '';
-
             urls.forEach(u => URL.revokeObjectURL(u));
-
             urls = [];
-
         }
-
     </script>
-
 </body>
-
-</html> 
+</html>
