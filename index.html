@@ -391,9 +391,9 @@
         const BTN = 'bg-purple-600 hover:bg-purple-500 text-white text-xs px-4 py-2.5 rounded-xl transition font-medium flex items-center justify-center gap-2 shadow-md shadow-purple-600/30';
         const NUM_ANUNCIOS = 3;  // anuncios obligatorios antes de generar (mínimo 3)
         const SEG_ANUNCIO = 8;   // segundos que dura cada anuncio
-        // Código del banner de Adsterra (160x600). Para cambiarlo, pega otro código entre las comillas invertidas y ajusta ANUNCIO_W y ANUNCIO_H. Si lo dejas vacío, solo se muestra la cuenta atrás.
-        const ANUNCIO_W = 160, ANUNCIO_H = 600;
-        const CODIGO_ANUNCIO = `<script>
+        // Banners de Adsterra que rotan en los pasos de espera (1.º, 2.º, 3.º... en este orden). Para añadir otro, copia un bloque {w, h, code} con su código y su tamaño. Si la lista queda vacía, solo se muestra la cuenta atrás.
+        const ANUNCIOS = [
+            { w: 160, h: 600, code: `<script>
   atOptions = {
     'key' : 'bf3bee5a0a7c7713d29fb0ce33448885',
     'format' : 'iframe',
@@ -402,7 +402,18 @@
     'params' : {}
   };
 <\/script>
-<script src="https://bellnewyork.org/22/bf3bee5a0a7c7713d29fb0ce33448885"><\/script>`;
+<script src="https://bellnewyork.org/22/bf3bee5a0a7c7713d29fb0ce33448885"><\/script>` },
+            { w: 160, h: 300, code: `<script>
+  atOptions = {
+    'key' : '044ab2a95ebd3970ecdcc448baf0d52c',
+    'format' : 'iframe',
+    'height' : 300,
+    'width' : 160,
+    'params' : {}
+  };
+<\/script>
+<script src="https://bellnewyork.org/22/044ab2a95ebd3970ecdcc448baf0d52c"><\/script>` }
+        ];
         const TXT_LABEL = 'Elige aquí el video largo de tu dispositivo';
         let procesando = false, urls = [], audioCtx = null, srcNode = null, dest = null, mime = '', ext = 'webm';
         const $ = id => document.getElementById(id);
@@ -606,16 +617,17 @@
             $('vistaResultado').classList.remove('hidden');
         }
 
-        function cargarAnuncio(c) {
+        function cargarAnuncio(c, n) {
             c.innerHTML = '';
-            if (leerConsentimiento() !== 'si' || !CODIGO_ANUNCIO.trim()) { c.classList.add('hidden'); return; }
+            if (leerConsentimiento() !== 'si' || !ANUNCIOS.length) { c.classList.add('hidden'); return; }
             c.classList.remove('hidden');
+            const a = ANUNCIOS[n % ANUNCIOS.length];
             const f = document.createElement('iframe');
-            f.width = ANUNCIO_W; f.height = ANUNCIO_H;
+            f.width = a.w; f.height = a.h;
             f.setAttribute('scrolling', 'no');
             f.setAttribute('frameborder', '0');
-            f.style.cssText = `border:0;width:${ANUNCIO_W}px;height:${ANUNCIO_H}px;max-width:100%;background:transparent`;
-            f.srcdoc = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;background:transparent">' + CODIGO_ANUNCIO + '</body></html>';
+            f.style.cssText = `border:0;width:${a.w}px;height:${a.h}px;max-width:100%;background:transparent`;
+            f.srcdoc = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;background:transparent">' + a.code + '</body></html>';
             c.appendChild(f);
         }
 
@@ -623,7 +635,7 @@
             const total = NUM_ANUNCIOS, btn = $('btnSiguienteAnuncio'), slot = $('slotAnuncio'), barra = $('barraAnuncio');
             for (let i = 1; i <= total; i++) {
                 $('numAnuncio').textContent = `Anuncio ${i} de ${total}`;
-                cargarAnuncio(slot);
+                cargarAnuncio(slot, i - 1);
                 btn.disabled = true;
                 btn.classList.add('opacity-50', 'cursor-not-allowed');
                 barra.style.transition = 'none'; barra.style.width = '0%';
