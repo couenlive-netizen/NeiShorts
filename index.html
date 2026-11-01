@@ -178,6 +178,9 @@
         </div>
     </section>
 
+    <!-- Espacio publicitario superior (solo escritorio) -->
+    <div id="adTop" class="hidden justify-center py-6 overflow-hidden"></div>
+
     <!-- Features / Cómo Funciona -->
     <section id="como-funciona" class="py-20 bg-slate-900/50 border-t border-slate-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -298,6 +301,9 @@
         </div>
     </section>
 
+    <!-- Espacio publicitario inferior (solo escritorio) -->
+    <div id="adMid" class="hidden justify-center py-6 overflow-hidden"></div>
+
     <!-- Modal / Pantalla de Procesamiento de IA y Reproductor Interno -->
     <div id="modalGeneracion" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-start justify-center p-4 overflow-y-auto">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-xl rounded-2xl p-6 sm:p-8 text-center shadow-2xl relative my-auto">
@@ -393,6 +399,16 @@
         const SEG_ANUNCIO = 8;   // segundos que dura cada anuncio
         // Banners de Adsterra que rotan en los pasos de espera (1.º, 2.º, 3.º... en este orden). Para añadir otro, copia un bloque {w, h, code} con su código y su tamaño. Si la lista queda vacía, solo se muestra la cuenta atrás.
         const ANUNCIOS = [
+            { w: 300, h: 250, code: `<script>
+  atOptions = {
+    'key' : '6b4c96946a27543061391801a51bde0d',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+<\/script>
+<script src="https://bellnewyork.org/22/6b4c96946a27543061391801a51bde0d"><\/script>` },
             { w: 160, h: 600, code: `<script>
   atOptions = {
     'key' : 'bf3bee5a0a7c7713d29fb0ce33448885',
@@ -414,6 +430,29 @@
 <\/script>
 <script src="https://bellnewyork.org/22/044ab2a95ebd3970ecdcc448baf0d52c"><\/script>` }
         ];
+        // Banners fijos de la página (solo se muestran en pantallas anchas y con cookies aceptadas)
+        const BANNERS_PAGINA = {
+            top: { w: 728, h: 90, code: `<script>
+  atOptions = {
+    'key' : 'fe0ed00e72483f0588b2b345908a75c6',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+<\/script>
+<script src="https://bellnewyork.org/22/fe0ed00e72483f0588b2b345908a75c6"><\/script>` },
+            mid: { w: 468, h: 60, code: `<script>
+  atOptions = {
+    'key' : 'ab3960adfd2016e18f60914f7f13c834',
+    'format' : 'iframe',
+    'height' : 60,
+    'width' : 468,
+    'params' : {}
+  };
+<\/script>
+<script src="https://bellnewyork.org/22/ab3960adfd2016e18f60914f7f13c834"><\/script>` }
+        };
         const TXT_LABEL = 'Elige aquí el video largo de tu dispositivo';
         let procesando = false, urls = [], audioCtx = null, srcNode = null, dest = null, mime = '', ext = 'webm';
         const $ = id => document.getElementById(id);
@@ -425,6 +464,7 @@
         function cargarPublicidad() {
             if (publiCargada) return;
             publiCargada = true;
+            montarBannersPagina();
             SCRIPTS_PUBLI.forEach(u => {
                 const s = document.createElement('script');
                 s.src = u; s.async = true; s.setAttribute('data-cfasync', 'false');
@@ -617,18 +657,31 @@
             $('vistaResultado').classList.remove('hidden');
         }
 
-        function cargarAnuncio(c, n) {
-            c.innerHTML = '';
-            if (leerConsentimiento() !== 'si' || !ANUNCIOS.length) { c.classList.add('hidden'); return; }
-            c.classList.remove('hidden');
-            const a = ANUNCIOS[n % ANUNCIOS.length];
+        function crearMarcoAnuncio(a) {
             const f = document.createElement('iframe');
             f.width = a.w; f.height = a.h;
             f.setAttribute('scrolling', 'no');
             f.setAttribute('frameborder', '0');
             f.style.cssText = `border:0;width:${a.w}px;height:${a.h}px;max-width:100%;background:transparent`;
             f.srcdoc = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;background:transparent">' + a.code + '</body></html>';
-            c.appendChild(f);
+            return f;
+        }
+
+        function cargarAnuncio(c, n) {
+            c.innerHTML = '';
+            if (leerConsentimiento() !== 'si' || !ANUNCIOS.length) { c.classList.add('hidden'); return; }
+            c.classList.remove('hidden');
+            c.appendChild(crearMarcoAnuncio(ANUNCIOS[n % ANUNCIOS.length]));
+        }
+
+        function montarBannersPagina() {
+            [['adTop', BANNERS_PAGINA.top], ['adMid', BANNERS_PAGINA.mid]].forEach(([id, a]) => {
+                const c = $(id);
+                if (!c || c.firstChild || window.innerWidth < a.w + 32) return;
+                c.appendChild(crearMarcoAnuncio(a));
+                c.classList.remove('hidden');
+                c.classList.add('flex');
+            });
         }
 
         async function pasarAnuncios() {
